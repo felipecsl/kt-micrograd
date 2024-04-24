@@ -50,7 +50,7 @@ data class Value(
         val (data, children, op, label) = currentValue
         var opNode: MutableNode? = null
         if (op != "") {
-          opNode = mutNode(op).add(Label.html(op))
+          opNode = mutNode("$label$op").add(Label.html(op))
           graph.add(opNode)
         }
         val dataNodeLabel = "data ${String.format("%.4f", data)}"

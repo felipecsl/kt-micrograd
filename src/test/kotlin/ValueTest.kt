@@ -59,6 +59,9 @@ class ValueTest {
     e.label = "e"
     val d = e + c
     d.label = "d"
-    d.generateGraph("example-graph.svg")
+    val f = Value(-2.0, label = "f")
+    val L = d * f
+    L.label = "L"
+    L.generateGraph("example-graph.svg")
   }
 }
