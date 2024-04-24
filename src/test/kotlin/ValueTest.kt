@@ -1,5 +1,7 @@
 import com.google.common.truth.Truth.assertThat
+import java.io.File
 import kotlin.test.Test
+
 
 class ValueTest {
   @Test
@@ -51,7 +53,7 @@ class ValueTest {
   }
 
   @Test
-  fun `generateGraph`() {
+  fun `generate simple graph`() {
     val a = Value(2.0, label = "a")
     val b = Value(-3.0, label = "b")
     val c = Value(10.0, label = "c")
@@ -62,6 +64,26 @@ class ValueTest {
     val f = Value(-2.0, label = "f")
     val L = d * f
     L.label = "L"
-    L.generateGraph("example-graph.svg")
+    val outFile = "src/test/resources/example-graph-actual.svg"
+    L.generateGraph(outFile)
+    val classLoader = javaClass.classLoader
+    val file = File(classLoader.getResource("example-graph-expected.svg").file)
+    assertThat(File(outFile).readText()).isEqualTo(file.readText())
+  }
+
+  @Test
+  fun `generate neuron graph`() {
+    val x1 = Value(2.0, label = "x1")
+    val x2 = Value(0.0, label = "x2")
+    val w1 = Value(-3.0, label = "w1")
+    val w2 = Value(1.0, label = "w2")
+    val b = Value(6.7, label = "b")
+    val x1w1 = x1 * w1; x1w1.label = "x1*w1"
+    val x2w2 = x2 * w2; x2w2.label = "x2*w2"
+    val x1w1x2w2 = x1w1 + x2w2; x1w1x2w2.label = "x1*w1 + x2*w2"
+    val n = x1w1x2w2 + b; n.label = "n"
+    val o = n.tanh()
+    val outFile = "src/test/resources/neuron-graph-actual.svg"
+    o.generateGraph(outFile)
   }
 }

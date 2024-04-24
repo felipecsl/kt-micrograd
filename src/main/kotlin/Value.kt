@@ -3,13 +3,14 @@ import guru.nidi.graphviz.attribute.Rank
 import guru.nidi.graphviz.attribute.Records
 import guru.nidi.graphviz.attribute.Records.rec
 import guru.nidi.graphviz.attribute.Records.turn
-import guru.nidi.graphviz.attribute.Shape
 import guru.nidi.graphviz.engine.Format
 import guru.nidi.graphviz.engine.Graphviz
-import guru.nidi.graphviz.model.Factory.*
+import guru.nidi.graphviz.model.Factory.mutGraph
+import guru.nidi.graphviz.model.Factory.mutNode
 import guru.nidi.graphviz.model.MutableGraph
 import guru.nidi.graphviz.model.MutableNode
 import java.io.File
+import kotlin.math.exp
 
 data class Value(
   val data: Double,
@@ -17,6 +18,8 @@ data class Value(
   val op: String = "",
   var label: String = "",
 ) {
+  var grad = 0.0
+
   override fun toString(): String {
     return "Value(data=$data, children=$children)"
   }
@@ -27,6 +30,12 @@ data class Value(
 
   operator fun times(other: Value): Value {
     return Value(data * other.data, setOf(this, other), "*")
+  }
+
+  fun tanh(): Value {
+    val x = data
+    val t = (exp(2*x) - 1)/(exp(2*x) + 1)
+    return Value(t, setOf(this), "tanh")
   }
 
   fun generateGraph(outFile: String) {
@@ -53,9 +62,12 @@ data class Value(
           opNode = mutNode("$label$op").add(Label.html(op))
           graph.add(opNode)
         }
-        val dataNodeLabel = "data ${String.format("%.4f", data)}"
-        val node = mutNode(dataNodeLabel)
-          .add(Records.of(turn(rec(label), rec("data ${String.format("%.4f", data)}"))))
+        val node = mutNode("$label$data")
+          .add(Records.of(turn(
+            rec(label),
+            rec("data ${String.format("%.4f", data)}"),
+            rec("grad ${String.format("%.4f", currentValue.grad)}")
+          )))
         graph.add(node)
         opNode?.addLink(node)
         children.forEach { child ->
