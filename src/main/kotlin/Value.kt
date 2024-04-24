@@ -11,12 +11,14 @@ import guru.nidi.graphviz.model.MutableGraph
 import guru.nidi.graphviz.model.MutableNode
 import java.io.File
 import kotlin.math.exp
+import kotlin.math.pow
 
 data class Value(
   val data: Double,
   val children: Set<Value> = setOf(),
   val op: String = "",
   var label: String = "",
+  val _backward: (Value) -> Unit = {},
 ) {
   var grad = 0.0
 
@@ -25,17 +27,47 @@ data class Value(
   }
 
   operator fun plus(other: Value): Value {
-    return Value(data + other.data, setOf(this, other), "+")
+    val self = this
+    return Value(data + other.data, setOf(this, other), "+", _backward = {
+      self.grad += it.grad
+      other.grad += it.grad
+    })
   }
 
   operator fun times(other: Value): Value {
-    return Value(data * other.data, setOf(this, other), "*")
+    val self = this
+    return Value(data * other.data, setOf(this, other), "*", _backward = {
+      self.grad += other.data * it.grad
+      other.grad += self.data * it.grad
+    })
+  }
+
+  fun backward() {
+    val topo = mutableListOf<Value>()
+    val visited = mutableSetOf<Value>()
+    fun buildTopologicalSort(v: Value) {
+      if (v in visited) return
+      visited.add(v)
+      for (child in v.children) {
+        buildTopologicalSort(child)
+      }
+      topo.add(v)
+    }
+    buildTopologicalSort(this)
+    // go one variable at a time and apply the chain rule to get its gradient
+    grad = 1.0
+    for (v in topo.asReversed()) {
+      v._backward(v)
+    }
   }
 
   fun tanh(): Value {
     val x = data
     val t = (exp(2*x) - 1)/(exp(2*x) + 1)
-    return Value(t, setOf(this), "tanh")
+    val self = this
+    return Value(t, setOf(this), "tanh", _backward = {
+      self.grad += (1 - t.pow(2)) * it.grad
+    })
   }
 
   fun generateGraph(outFile: String) {
@@ -60,7 +92,7 @@ data class Value(
         var opNode: MutableNode? = null
         if (op != "") {
           opNode = mutNode("$label$op").add(Label.html(op))
-          graph.add(opNode)
+          graph.add(opNode!!)
         }
         val node = mutNode("$label$data")
           .add(Records.of(turn(
