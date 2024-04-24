@@ -16,6 +16,15 @@ class ValueTest {
     val a = Value(2.0)
     val b = Value(-3.0)
     assertThat((a + b).data).isEqualTo(-1)
+    assertThat((a + 1).data).isEqualTo(3.0)
+  }
+
+  @Test
+  fun `test minus`() {
+    val a = Value(2.0)
+    val b = Value(3.0)
+    assertThat((a - b).data).isEqualTo(-1)
+    assertThat((a - 1).data).isEqualTo(1)
   }
 
   @Test
@@ -26,12 +35,24 @@ class ValueTest {
   }
 
   @Test
+  fun `test division`() {
+    val a = Value(2.0)
+    val b = Value(-3.0)
+    assertThat((a / b).data).isEqualTo(-2.0/3.0)
+  }
+
+  @Test
+  fun `test pow`() {
+    val a = Value(2.0)
+    assertThat(a.pow(3.0).data).isEqualTo(8.0)
+  }
+
+  @Test
   fun `add and multiply`() {
     val a = Value(2.0)
     val b = Value(-3.0)
     val c = Value(10.0)
     assertThat((a * b + c).data).isEqualTo(4)
-    assertThat((a + 1).data).isEqualTo(3.0)
     assertThat((a * 2.0).data).isEqualTo(4.0)
   }
 

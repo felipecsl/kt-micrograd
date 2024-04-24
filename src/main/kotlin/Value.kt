@@ -10,7 +10,9 @@ import guru.nidi.graphviz.model.Factory.mutNode
 import guru.nidi.graphviz.model.MutableGraph
 import guru.nidi.graphviz.model.MutableNode
 import java.io.File
+import java.lang.Math.pow
 import kotlin.math.exp
+import kotlin.math.ln
 import kotlin.math.pow
 
 class Value(
@@ -55,6 +57,22 @@ class Value(
       self.grad += it.grad
       other.grad += it.grad
     })
+  }
+
+  operator fun minus(other: Any): Value {
+    val other = maybeWrap(other)
+    return this + (other * -1)
+  }
+
+  fun pow(other: Double): Value {
+    val self = this
+    return Value(data.pow(other), setOf(this), "**$other", _backward = {
+      self.grad += (other * self.data.pow(other-1)) * it.grad
+    })
+  }
+
+  operator fun div(other: Value): Value {
+    return this * (other.pow(-1.0))
   }
 
   operator fun times(other: Any): Value {
