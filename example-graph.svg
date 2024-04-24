@@ -1,85 +1,95 @@
-<svg width="516px" height="125px"
- viewBox="0.00 0.00 515.62 125.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-<g id="graph0" class="graph" transform="scale(1.0 1.0) rotate(0.0) translate(4.0 121.0)">
+<svg width="584px" height="128px"
+ viewBox="0.00 0.00 583.83 128.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1.0 1.0) rotate(0.0) translate(4.0 124.0)">
 <title>graph</title>
-<polygon fill="white" stroke="transparent" points="-4,4 -4,-121 511.62,-121 511.62,4 -4,4"/>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-124 579.83,-124 579.83,4 -4,4"/>
 <!-- + -->
 <g id="node1" class="node">
 <title>+</title>
-<ellipse fill="none" stroke="black" cx="363.3" cy="-45" rx="27" ry="18"/>
-<text text-anchor="middle" x="363.3" y="-40.8" font-family="Times,serif" font-size="14.00">+</text>
+<ellipse fill="none" stroke="black" cx="408.51" cy="-45.5" rx="27" ry="18"/>
+<text text-anchor="middle" x="408.51" y="-41.3" font-family="Times,serif" font-size="14.00">+</text>
 </g>
 <!-- data 4.0000 -->
 <g id="node2" class="node">
 <title>data 4.0000</title>
-<polygon fill="none" stroke="black" points="507.78,-63 426.14,-63 426.14,-27 507.78,-27 507.78,-63"/>
-<text text-anchor="middle" x="466.96" y="-40.8" font-family="Times,serif" font-size="14.00">data 4.0000</text>
+<polygon fill="none" stroke="black" points="471.51,-27.5 471.51,-63.5 575.83,-63.5 575.83,-27.5 471.51,-27.5"/>
+<text text-anchor="middle" x="483.01" y="-41.4" font-family="Times,serif" font-size="14.00">d</text>
+<polyline fill="none" stroke="black" points="494.51,-27.7 494.51,-63.5 "/>
+<text text-anchor="middle" x="535.17" y="-41.4" font-family="Times,serif" font-size="14.00">data 4.0000</text>
 </g>
 <!-- +&#45;&gt;data 4.0000 -->
 <g id="edge1" class="edge">
 <title>+&#45;&gt;data 4.0000</title>
-<path fill="none" stroke="black" d="M390.48,-45C398.26,-45 407.06,-45 415.83,-45"/>
-<polygon fill="black" stroke="black" points="416.05,-48.5 426.05,-45 416.05,-41.5 416.05,-48.5"/>
+<path fill="none" stroke="black" d="M435.76,-45.5C443.45,-45.5 452.19,-45.5 461.1,-45.5"/>
+<polygon fill="black" stroke="black" points="461.19,-49 471.19,-45.5 461.19,-42 461.19,-49"/>
 </g>
 <!-- * -->
 <g id="node3" class="node">
 <title>*</title>
-<ellipse fill="none" stroke="black" cx="148.98" cy="-72" rx="27" ry="18"/>
-<text text-anchor="middle" x="148.98" y="-67.8" font-family="Times,serif" font-size="14.00">*</text>
+<ellipse fill="none" stroke="black" cx="171.98" cy="-73.5" rx="27" ry="18"/>
+<text text-anchor="middle" x="171.98" y="-69.3" font-family="Times,serif" font-size="14.00">*</text>
 </g>
 <!-- data &#45;6.0000 -->
 <g id="node4" class="node">
 <title>data &#45;6.0000</title>
-<polygon fill="none" stroke="black" points="299.12,-90 213.16,-90 213.16,-54 299.12,-54 299.12,-90"/>
-<text text-anchor="middle" x="256.14" y="-67.8" font-family="Times,serif" font-size="14.00">data &#45;6.0000</text>
+<polygon fill="none" stroke="black" points="236.15,-55.5 236.15,-91.5 344.35,-91.5 344.35,-55.5 236.15,-55.5"/>
+<text text-anchor="middle" x="247.26" y="-69.4" font-family="Times,serif" font-size="14.00">e</text>
+<polyline fill="none" stroke="black" points="258.36,-55.7 258.36,-91.5 "/>
+<text text-anchor="middle" x="301.35" y="-69.4" font-family="Times,serif" font-size="14.00">data &#45;6.0000</text>
 </g>
 <!-- *&#45;&gt;data &#45;6.0000 -->
 <g id="edge2" class="edge">
 <title>*&#45;&gt;data &#45;6.0000</title>
-<path fill="none" stroke="black" d="M176.25,-72C184.29,-72 193.44,-72 202.59,-72"/>
-<polygon fill="black" stroke="black" points="202.86,-75.5 212.86,-72 202.86,-68.5 202.86,-75.5"/>
+<path fill="none" stroke="black" d="M199.07,-73.5C207.14,-73.5 216.4,-73.5 225.84,-73.5"/>
+<polygon fill="black" stroke="black" points="226.12,-77 236.12,-73.5 226.12,-70 226.12,-77"/>
 </g>
 <!-- data &#45;6.0000&#45;&gt;+ -->
 <g id="edge3" class="edge">
 <title>data &#45;6.0000&#45;&gt;+</title>
-<path fill="none" stroke="black" d="M299.31,-61.17C308.77,-58.74 318.71,-56.19 327.82,-53.85"/>
-<polygon fill="black" stroke="black" points="328.87,-57.2 337.68,-51.32 327.13,-50.42 328.87,-57.2"/>
+<path fill="none" stroke="black" d="M344.62,-60.65C354.23,-58.33 364.01,-55.98 372.91,-53.83"/>
+<polygon fill="black" stroke="black" points="373.99,-57.17 382.89,-51.43 372.35,-50.37 373.99,-57.17"/>
 </g>
 <!-- data 2.0000 -->
 <g id="node5" class="node">
 <title>data 2.0000</title>
-<polygon fill="none" stroke="black" points="83.81,-117 2.17,-117 2.17,-81 83.81,-81 83.81,-117"/>
-<text text-anchor="middle" x="42.99" y="-94.8" font-family="Times,serif" font-size="14.00">data 2.0000</text>
+<polygon fill="none" stroke="black" points="2.72,-83.5 2.72,-119.5 106.26,-119.5 106.26,-83.5 2.72,-83.5"/>
+<text text-anchor="middle" x="13.83" y="-97.4" font-family="Times,serif" font-size="14.00">a</text>
+<polyline fill="none" stroke="black" points="24.94,-83.7 24.94,-119.5 "/>
+<text text-anchor="middle" x="65.6" y="-97.4" font-family="Times,serif" font-size="14.00">data 2.0000</text>
 </g>
 <!-- data 2.0000&#45;&gt;* -->
 <g id="edge4" class="edge">
 <title>data 2.0000&#45;&gt;*</title>
-<path fill="none" stroke="black" d="M83.9,-88.64C93.74,-86.08 104.2,-83.37 113.74,-80.89"/>
-<polygon fill="black" stroke="black" points="114.87,-84.21 123.67,-78.31 113.11,-77.44 114.87,-84.21"/>
+<path fill="none" stroke="black" d="M106.48,-89.14C116.69,-86.66 127.18,-84.12 136.66,-81.82"/>
+<polygon fill="black" stroke="black" points="137.59,-85.2 146.48,-79.44 135.94,-78.39 137.59,-85.2"/>
 </g>
 <!-- data &#45;3.0000 -->
 <g id="node6" class="node">
 <title>data &#45;3.0000</title>
-<polygon fill="none" stroke="black" points="85.97,-63 0.01,-63 0.01,-27 85.97,-27 85.97,-63"/>
-<text text-anchor="middle" x="42.99" y="-40.8" font-family="Times,serif" font-size="14.00">data &#45;3.0000</text>
+<polygon fill="none" stroke="black" points="0,-28.5 0,-64.5 108.98,-64.5 108.98,-28.5 0,-28.5"/>
+<text text-anchor="middle" x="11.5" y="-42.4" font-family="Times,serif" font-size="14.00">b</text>
+<polyline fill="none" stroke="black" points="23,-28.7 23,-64.5 "/>
+<text text-anchor="middle" x="65.99" y="-42.4" font-family="Times,serif" font-size="14.00">data &#45;3.0000</text>
 </g>
 <!-- data &#45;3.0000&#45;&gt;* -->
 <g id="edge5" class="edge">
 <title>data &#45;3.0000&#45;&gt;*</title>
-<path fill="none" stroke="black" d="M85.99,-55.9C95.14,-58.28 104.73,-60.77 113.55,-63.06"/>
-<polygon fill="black" stroke="black" points="112.93,-66.51 123.49,-65.64 114.69,-59.74 112.93,-66.51"/>
+<path fill="none" stroke="black" d="M109.18,-59.05C118.39,-61.21 127.74,-63.39 136.29,-65.39"/>
+<polygon fill="black" stroke="black" points="135.71,-68.85 146.25,-67.72 137.31,-62.03 135.71,-68.85"/>
 </g>
 <!-- data 10.0000 -->
 <g id="node7" class="node">
 <title>data 10.0000</title>
-<polygon fill="none" stroke="black" points="300.46,-36 211.82,-36 211.82,0 300.46,0 300.46,-36"/>
-<text text-anchor="middle" x="256.14" y="-13.8" font-family="Times,serif" font-size="14.00">data 10.0000</text>
+<polygon fill="none" stroke="black" points="234.98,-0.5 234.98,-36.5 345.51,-36.5 345.51,-0.5 234.98,-0.5"/>
+<text text-anchor="middle" x="246.09" y="-14.4" font-family="Times,serif" font-size="14.00">c</text>
+<polyline fill="none" stroke="black" points="257.19,-0.7 257.19,-36.5 "/>
+<text text-anchor="middle" x="301.35" y="-14.4" font-family="Times,serif" font-size="14.00">data 10.0000</text>
 </g>
 <!-- data 10.0000&#45;&gt;+ -->
 <g id="edge6" class="edge">
 <title>data 10.0000&#45;&gt;+</title>
-<path fill="none" stroke="black" d="M300.52,-29.14C309.71,-31.5 319.29,-33.96 328.08,-36.21"/>
-<polygon fill="black" stroke="black" points="327.42,-39.66 337.97,-38.75 329.16,-32.88 327.42,-39.66"/>
+<path fill="none" stroke="black" d="M345.64,-31.13C354.88,-33.28 364.25,-35.45 372.81,-37.44"/>
+<polygon fill="black" stroke="black" points="372.25,-40.9 382.78,-39.76 373.83,-34.08 372.25,-40.9"/>
 </g>
 </g>
 </svg>

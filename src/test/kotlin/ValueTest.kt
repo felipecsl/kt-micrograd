@@ -52,10 +52,13 @@ class ValueTest {
 
   @Test
   fun `generateGraph`() {
-    val a = Value(2.0)
-    val b = Value(-3.0)
-    val c = Value(10.0)
-    val d = a * b + c
-    d.generateGraph(d, "example-graph.svg")
+    val a = Value(2.0, label = "a")
+    val b = Value(-3.0, label = "b")
+    val c = Value(10.0, label = "c")
+    val e = a * b
+    e.label = "e"
+    val d = e + c
+    d.label = "d"
+    d.generateGraph("example-graph.svg")
   }
 }
