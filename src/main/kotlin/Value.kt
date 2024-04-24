@@ -13,7 +13,7 @@ import java.io.File
 import kotlin.math.exp
 import kotlin.math.pow
 
-data class Value(
+class Value(
   val data: Double,
   val children: Set<Value> = setOf(),
   val op: String = "",
@@ -22,24 +22,54 @@ data class Value(
 ) {
   var grad = 0.0
 
-  override fun toString(): String {
-    return "Value(data=$data, children=$children)"
+  override fun equals(other: Any?): Boolean {
+    if (this === other) return true
+    if (other?.javaClass != javaClass) return false
+
+    other as Value
+
+    if (data != other.data) return false
+    if (children != other.children) return false
+    if (op != other.op) return false
+    if (label != other.label) return false
+
+    return true
   }
 
-  operator fun plus(other: Value): Value {
+  override fun hashCode(): Int {
+    var result = data.hashCode()
+    result = 31 * result + children.hashCode()
+    result = 31 * result + op.hashCode()
+    result = 31 * result + label.hashCode()
+    return result
+  }
+
+  override fun toString(): String {
+    return "Value(data=$data, children=$children, op=$op, label=$label)"
+  }
+
+  operator fun plus(other: Any): Value {
     val self = this
+    val other = maybeWrap(other)
     return Value(data + other.data, setOf(this, other), "+", _backward = {
       self.grad += it.grad
       other.grad += it.grad
     })
   }
 
-  operator fun times(other: Value): Value {
+  operator fun times(other: Any): Value {
     val self = this
+    val other = maybeWrap(other)
     return Value(data * other.data, setOf(this, other), "*", _backward = {
       self.grad += other.data * it.grad
       other.grad += self.data * it.grad
     })
+  }
+
+  private fun maybeWrap(other: Any) = when (other) {
+    is Value -> other
+    is Number -> Value(other.toDouble())
+    else -> throw IllegalArgumentException("Unsupported type")
   }
 
   fun backward() {
@@ -88,7 +118,10 @@ data class Value(
       nodesMap: MutableMap<Value, MutableNode> = mutableMapOf()
     ): MutableNode {
       return nodesMap.getOrPut(currentValue) {
-        val (data, children, op, label) = currentValue
+        val data = currentValue.data
+        val children = currentValue.children
+        val op = currentValue.op
+        val label = currentValue.label
         var opNode: MutableNode? = null
         if (op != "") {
           opNode = mutNode("$label$op").add(Label.html(op))

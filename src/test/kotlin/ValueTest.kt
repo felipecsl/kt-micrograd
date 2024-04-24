@@ -8,7 +8,7 @@ class ValueTest {
   fun `test toString`() {
     val value = Value(1.0)
     assertThat(value.data).isEqualTo(1)
-    assertThat(value.toString()).isEqualTo("Value(data=1, children=[])")
+    assertThat(value.toString()).isEqualTo("Value(data=1.0, children=[], op=, label=)")
   }
 
   @Test
@@ -31,6 +31,8 @@ class ValueTest {
     val b = Value(-3.0)
     val c = Value(10.0)
     assertThat((a * b + c).data).isEqualTo(4)
+    assertThat((a + 1).data).isEqualTo(3.0)
+    assertThat((a * 2.0).data).isEqualTo(4.0)
   }
 
   @Test
@@ -85,6 +87,9 @@ class ValueTest {
     val o = n.tanh(); o.label = "o"
     val outFile = "src/test/resources/neuron-graph-actual.svg"
     o.generateGraph(outFile)
+    val classLoader = javaClass.classLoader
+    val file = File(classLoader.getResource("neuron-graph-expected.svg")!!.file)
+    assertThat(File(outFile).readText()).isEqualTo(file.readText())
   }
 
   @Test
