@@ -10,9 +10,7 @@ import guru.nidi.graphviz.model.Factory.mutNode
 import guru.nidi.graphviz.model.MutableGraph
 import guru.nidi.graphviz.model.MutableNode
 import java.io.File
-import java.lang.Math.pow
 import kotlin.math.exp
-import kotlin.math.ln
 import kotlin.math.pow
 
 class Value(
@@ -20,7 +18,7 @@ class Value(
   val children: Set<Value> = setOf(),
   val op: String = "",
   var label: String = "",
-  val _backward: (Value) -> Unit = {},
+  private val _backward: (Value) -> Unit = {},
 ) {
   var grad = 0.0
 
