@@ -56,6 +56,6 @@ class ValueTest {
     val b = Value(-3.0)
     val c = Value(10.0)
     val d = a * b + c
-    d.generateGraph(d)
+    d.generateGraph(d, "example-graph.svg")
   }
 }

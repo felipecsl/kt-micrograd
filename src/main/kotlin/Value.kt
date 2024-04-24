@@ -24,8 +24,11 @@ data class Value(
     return Value(data * other.data, setOf(this, other), "*")
   }
 
-  fun generateGraph(value: Value) {
-    val graph = mutGraph("graph").setDirected(true).graphAttrs().add(Rank.dir(Rank.RankDir.LEFT_TO_RIGHT))
+  fun generateGraph(value: Value, outFile: String) {
+    val graph = mutGraph("graph")
+      .setDirected(true)
+      .graphAttrs()
+      .add(Rank.dir(Rank.RankDir.LEFT_TO_RIGHT))
     val nodesMap = mutableMapOf<Value, MutableNode>()
     fun processValue(currentValue: Value): MutableNode {
       return nodesMap.getOrPut(currentValue) {
@@ -36,7 +39,9 @@ data class Value(
           graph.add(opNode)
         }
         val dataNodeLabel = "data ${String.format("%.4f", data)}"
-        val node = mutNode(dataNodeLabel).add(Label.html(dataNodeLabel)).add(Shape.RECTANGLE)
+        val node = mutNode(dataNodeLabel)
+          .add(Label.html(dataNodeLabel))
+          .add(Shape.RECTANGLE)
         graph.add(node)
         opNode?.addLink(node)
         children.forEach { child ->
@@ -44,7 +49,7 @@ data class Value(
           graph.add(childNode)
           if (opNode != null) {
             childNode.addLink(opNode)
-            }
+          }
         }
         node
       }
@@ -52,6 +57,6 @@ data class Value(
     processValue(value)
     Graphviz.fromGraph(graph)
       .render(Format.SVG)
-      .toFile(File("example-graph.svg"))
+      .toFile(File(outFile))
   }
 }
