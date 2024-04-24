@@ -67,7 +67,7 @@ class ValueTest {
     val outFile = "src/test/resources/example-graph-actual.svg"
     L.generateGraph(outFile)
     val classLoader = javaClass.classLoader
-    val file = File(classLoader.getResource("example-graph-expected.svg").file)
+    val file = File(classLoader.getResource("example-graph-expected.svg")!!.file)
     assertThat(File(outFile).readText()).isEqualTo(file.readText())
   }
 
@@ -88,7 +88,7 @@ class ValueTest {
   }
 
   @Test
-  fun `backpropagation`() {
+  fun `backpropagation gradients`() {
     val x1 = Value(2.0, label = "x1")
     val x2 = Value(0.0, label = "x2")
     val w1 = Value(-3.0, label = "w1")
@@ -102,5 +102,12 @@ class ValueTest {
     o.backward()
     val outFile = "src/test/resources/neuron-graph-backward-actual.svg"
     o.generateGraph(outFile)
+    assertThat(x1.grad).isEqualTo(-1.4999999999999996)
+    assertThat(w1.grad).isEqualTo(0.9999999999999998)
+    assertThat(x2.grad).isEqualTo(0.4999999999999999)
+    assertThat(w2.grad).isEqualTo(0.0)
+    assertThat(x1w1.grad).isEqualTo(0.4999999999999999)
+    assertThat(x2w2.grad).isEqualTo(0.4999999999999999)
+    assertThat(x1w1x2w2.grad).isEqualTo(0.4999999999999999)
   }
 }
