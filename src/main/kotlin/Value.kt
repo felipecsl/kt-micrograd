@@ -14,7 +14,7 @@ import kotlin.math.exp
 import kotlin.math.pow
 
 class Value(
-  val data: Double,
+  var data: Double,
   val children: Set<Value> = setOf(),
   val op: String = "",
   var label: String = "",
@@ -137,7 +137,9 @@ class Value(
         val data = currentValue.data
         val children = currentValue.children
         val op = currentValue.op
-        val label = currentValue.label
+        val label = currentValue.label.ifEmpty {
+          System.identityHashCode(currentValue).toString()
+        }
         var opNode: MutableNode? = null
         if (op != "") {
           opNode = mutNode("$label$op").add(Label.html(op))

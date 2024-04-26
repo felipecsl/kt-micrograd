@@ -38,15 +38,14 @@ class NeuralNetTest {
     // desired targets
     val ys = listOf(1.0, -1.0, -1.0, 1.0)
     val n = MLP(3, listOf(4, 4, 1))
+    // forward pass
     val ypred = xs.flatMap { x -> n(x) }
     println(ypred.map { it.data })
     val loss = ys.zip(ypred)
       .map { (ygt, yout) -> (yout - ygt).pow(2.0) }
       .reduce { acc, value -> acc + value }
-    println(loss.data)
-    println("grad before=" + n.layers[0].neurons[0].w[0].grad)
+    // backward pass
     loss.backward()
-    println("grad after=" + n.layers[0].neurons[0].w[0].grad)
-    loss.generateGraph("src/test/resources/mlp.svg")
+    assertThat(n.parameters().size).isEqualTo(41)
   }
 }
