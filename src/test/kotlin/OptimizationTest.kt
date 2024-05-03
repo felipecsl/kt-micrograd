@@ -24,19 +24,21 @@ class OptimizationTest {
 
     // gradient descent
     val maxSteps = 1000
-    for (k in 0.rangeTo(maxSteps)) {
+    for (k in 0..maxSteps) {
       // forward
       val (totalLoss, predictions) = loss()
       // backward
       model.zeroGrad()
       totalLoss.backward()
       // update(sgd)
-      val learningRate = 0.01//1.0 - 0.9 * k / 100
+      val learningRate = 0.02
       for (p in model.parameters()) {
         p.data -= learningRate * p.grad
       }
-      println("step $k loss ${totalLoss.data}")
-      if (k == maxSteps - 1) {
+      if (k % 100 == 0) {
+        println("step $k loss ${totalLoss.data}, learningRate=$learningRate")
+      }
+      if (k == maxSteps) {
         println("predictions: ${predictions.map { it.data }}")
       }
     }
